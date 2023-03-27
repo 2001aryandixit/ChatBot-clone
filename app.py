@@ -1,5 +1,5 @@
 import openai
-import gradio as gr
+import gradio as g
 
 with open('hidden.txt') as file:
     openai.api_key=file.read()
@@ -36,16 +36,16 @@ def chatgpt_clone(input, history):
     return history, history
 
 
-block = gr.Blocks()
+block = g.Blocks()
 
 
 with block:
-    gr.Markdown("""<h1><center>Chat GPT clone using OpenAi API</center></h1>
+    g.Markdown("""<h1><center>Chat GPT clone using OpenAi API</center></h1>
     """)
-    chatbot = gr.Chatbot()
-    message = gr.Textbox(placeholder=prompt)
-    state = gr.State()
-    submit = gr.Button("SEND")
+    chatbot = g.Chatbot()
+    message = g.Textbox(placeholder=prompt)
+    state = g.State()
+    submit = g.Button("SEND")
     submit.click(chatgpt_clone, inputs=[message, state], outputs=[chatbot, state])
 
 block.launch(debug = True)
